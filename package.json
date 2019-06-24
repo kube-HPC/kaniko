@@ -1,0 +1,19 @@
+{
+  "name": "kaniko",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kube-HPC/kaniko.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kube-HPC/kaniko/issues"
+  },
+  "homepage": "https://github.com/kube-HPC/kaniko#readme"
+}
