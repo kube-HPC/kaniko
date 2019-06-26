@@ -1,4 +1,4 @@
-set -e
+
 echo waiting for build
 FILE=/commands/start
 while [ ! -f "$FILE" ]; do
@@ -6,14 +6,22 @@ while [ ! -f "$FILE" ]; do
   sleep 1s
 done
 if [ -f /commands/config.json ]; then
+    echo copy docker creds from /commands/config.json to /kaniko/.docker/config.json
     cp /commands/config.json /kaniko/.docker/config.json
 fi
 if [ -f /commands/run ]; then
     echo running command /commands/run
     cat /commands/run
-    sh -c /commands/run > /commands/output 2>&1
+    sh -c /commands/run 2>&1 | tee /commands/output
     echo done
-    touch /commands/code_ok
+    rc=$?
+    if [ $rc != 0 ]
+    then
+      echo "error: $rc" | tee /commands/output
+      touch /commands/code_error
+    else
+      touch /commands/code_ok
+    fi
 else
     echo /commands/run not found.
     touch /commands/code_error
