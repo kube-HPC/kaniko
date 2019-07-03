@@ -11,7 +11,7 @@ if [ -f /commands/config.json ]; then
 fi
 if [ -f /commands/run ]; then
     echo running command /commands/run
-    cat /commands/run
+    # cat /commands/run
     set -o pipefail
     sh -c /commands/run 2>&1 | tee /commands/output
     rc=$?
